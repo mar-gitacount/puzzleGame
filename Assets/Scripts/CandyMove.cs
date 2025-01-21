@@ -154,6 +154,7 @@ void Start()
 
     {
         //! 思いつきだが、直接指の位置を代入する。
+        // gitバージョンテストする。
 
         //右にスワイプしていたなら。（Mathf.Absとは絶対値を示す）
         if (distance.x>=0 && Mathf.Abs(distance.x)>Mathf.Abs(distance.y))
@@ -172,7 +173,7 @@ void Start()
 
                 //隣のキャンディを１列左へ。
                 // これを座標を直接指定する？
-                
+
                 neighborCandy.GetComponent<CandyMove>().column -= 1;
 
                 //自身は１列右へ。
