@@ -22,10 +22,12 @@ jobs:
       - name: Bump version
         id: bump_version
         run: |
-          IFS='.' read -ra VERSION <<< "${{ env.tag:1 }}"
-          MAJOR=${VERSION[0]:-0}
-          MINOR=${VERSION[1]:-0}
-          PATCH=${VERSION[2]:-0}
+          TAG=${{ env.tag }}
+          VERSION=${TAG#v} # "v"を除去
+          IFS='.' read -ra VERSION_PARTS <<< "$VERSION"
+          MAJOR=${VERSION_PARTS[0]:-0}
+          MINOR=${VERSION_PARTS[1]:-0}
+          PATCH=${VERSION_PARTS[2]:-0}
           PATCH=$((PATCH + 1))
           NEW_VERSION="v$MAJOR.$MINOR.$PATCH"
           echo "New version: $NEW_VERSION"
